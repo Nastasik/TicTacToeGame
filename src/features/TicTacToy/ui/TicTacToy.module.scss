@@ -1,7 +1,20 @@
 .TicTacToy {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
 }
 
-.row {
+.title, .winner {
   display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.title {
+  color: rgb(120, 120, 120);
+}
+
+.winner {
+  color: rgb(72, 72, 72);
 }

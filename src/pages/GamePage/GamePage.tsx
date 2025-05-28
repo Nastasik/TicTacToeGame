@@ -5,7 +5,6 @@ import { TicTacToy } from "@features/TicTacToy/ui/TicTacToy";
 export const GamePage = memo(({}) => {
   return (
     <div className={cls.GamePage}>
-      GamePage
       <TicTacToy />
     </div>
   )
