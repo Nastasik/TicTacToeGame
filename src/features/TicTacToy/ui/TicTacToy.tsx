@@ -13,7 +13,8 @@ export const arr: any =
 [null, null, null, null, null, null],]
 
  const BOARD_ARR_COUNT = 6
-export const BOARD_ARR = Array.from({length: BOARD_ARR_COUNT}, () => Array(BOARD_ARR_COUNT).fill(null));
+ const getBoardArr= () => Array.from({length: BOARD_ARR_COUNT}, () => Array(BOARD_ARR_COUNT).fill(null));
+ export const BOARD_ARR = getBoardArr()
 console.log(BOARD_ARR, 'BOARD_ARR')
 
 export const TicTacToy = memo(() => {
@@ -21,6 +22,7 @@ export const TicTacToy = memo(() => {
   const [player, setPlayer] = useState('x')
   const [winner, setWinner] = useState('')
   const [coords, setCoords] = useState({})
+  // const [boardArr, setBoardArr] = useState<any>()
   const [players, setPlayers] = useState({ player1: 'x', player2: 'o' })
 
   useEffect(() => {
@@ -37,8 +39,17 @@ export const TicTacToy = memo(() => {
     setIsWin(isWin)
     
     if(isWin) {
-      setWinner(player=== 'x' ? players.player1 : players.player2)
+      const newWinner = player === 'x' ? players.player1 : players.player2
+      setWinner(newWinner)
       setCoords(coords)
+      const history = localStorage.getItem('history')
+      const newData = {player1: players.player1, player2: players.player2, coords, boardArr: BOARD_ARR, winner: newWinner, date: new Date()}
+      if(history) {
+        const updatedHistory = [...JSON.parse(history), newData]
+        localStorage.setItem('history', JSON.stringify(updatedHistory))
+      } else {
+        localStorage.setItem('history', JSON.stringify([newData]))
+      }
     }
     setPlayer((player === 'x') ? 'o' : 'x')
   }, [player])

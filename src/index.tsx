@@ -1,6 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { App } from './app/App';
 import { createRoot } from 'react-dom/client';
+import './app/styles/reset.scss';
 
 const container = document.getElementById('root');
 

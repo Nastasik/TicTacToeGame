@@ -9,10 +9,10 @@ export type CoordsType = {
 interface BoardProps {
   boardArr: string[][],
   coords: CoordsType,
-  onClick: (args: SquareClickProps) => void
+  onClick?: (args: SquareClickProps) => void
 }
 
-export const Board = memo(({ boardArr, onClick, coords }: BoardProps) => {
+export const Board = memo(({ boardArr, onClick = () => false, coords }: BoardProps) => {
     return (
       <div className={cls.Board}>
         {boardArr.map((arr2: any, i1: any) => 
